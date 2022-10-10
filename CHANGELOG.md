@@ -40,7 +40,7 @@ To learn more about our roadmap, we recommend reading [this document](ROADMAP.md
 
 ### Fixes
 
-- TODO ([#XXX](https://github.com/kedacore/keda/issue/XXX))
+- **General:** Respect optional parameter inside envs for ScaledJobs ([#3568](https://github.com/kedacore/keda/issues/3568))
 
 ### Deprecations
 
