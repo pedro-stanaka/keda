@@ -1,0 +1,34 @@
+containers:
+  default:
+    build:
+      from: ubuntu-latest
+      type: ci
+  keda:
+    environment: production
+    application: keda
+    dockerfile:
+      tag_latest: false
+      build_args:
+        TARGETOS: linux
+        TARGETARCH: amd64
+        GIT_COMMIT: $BUILDKITE_COMMIT
+        GIT_VERSION: $BUILDKITE_BRANCH
+        BUILD_VERSION: $BUILDKITE_COMMIT
+  keda-metrics-adapter:
+    environment: production
+    application: keda-metrics-adapter
+    dockerfile:
+      tag_latest: false
+      path: Dockerfile.adapter
+      build_args:
+        TARGETOS: linux
+        TARGETARCH: amd64
+        GIT_COMMIT: $BUILDKITE_COMMIT
+        GIT_VERSION: $BUILDKITE_BRANCH
+        BUILD_VERSION: $BUILDKITE_COMMIT
+
+steps:
+  - build: keda
+    branches: "main release/*"
+  - build: keda-metrics-adapter
+    branches: "main release/*"
