@@ -1,0 +1,17 @@
+containers:
+  default:
+    build:
+      from: ubuntu-latest
+      type: ci
+  keda:
+    environment: production
+    application: keda
+    dockerfile:
+      tag_latest: false
+    build_args:
+      TARGETOS: linux
+      TARGETARCH: amd64
+
+steps:
+  - build: keda
+    branches: "main release/*"
