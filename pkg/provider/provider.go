@@ -91,7 +91,7 @@ func (p *KedaProvider) GetExternalMetric(ctx context.Context, namespace string, 
 	if err != nil {
 		return nil, err
 	} else if len(scaledObjects.Items) != 1 {
-		return nil, fmt.Errorf("exactly one ScaledObject should match label %s, got %d. Namespace: %s", metricSelector.String(), len(scaledObjects.Items), namespace)
+		return nil, fmt.Errorf("exactly one ScaledObject should match label %s, got %d. Namespace: %s, metric: %s", metricSelector.String(), len(scaledObjects.Items), namespace, info.Metric)
 	}
 
 	scaledObject := &scaledObjects.Items[0]
